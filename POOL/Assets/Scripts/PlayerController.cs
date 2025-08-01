@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 veclocity = new Vector3(moveInput.x, rb.velocity.y, moveInput.z);
-        rb.velocity = veclocity;
+        Vector3 velocity = new Vector3(moveInput.x, rb.velocity.y, moveInput.z);
+        rb.velocity = velocity;
     }
 
 }
