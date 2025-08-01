@@ -363,6 +363,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5928395085533954453, guid: f116eb6691a4c464d92e4389692c4107, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5928395085533954453, guid: f116eb6691a4c464d92e4389692c4107, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9522a058ab1cb0246a013d6fdc21de19, type: 2}
     - target: {fileID: -5413833428329500412, guid: f116eb6691a4c464d92e4389692c4107, type: 3}
       propertyPath: m_Name
       value: shoulder.L-Collider
@@ -1047,7 +1055,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972989950}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de2be6bc231ee664eabab623d162e3ca, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1084,7 +1092,7 @@ MonoBehaviour:
   groundDistance: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &980094640
 GameObject:
   m_ObjectHideFlags: 0
