@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip splashSound;
 
+    public GameObject splashEffectPrefab;
+
     private void OnTriggerEnter(Collider other)
     {
         if (uiController != null)
@@ -23,6 +25,10 @@ public class LevelManager : MonoBehaviour
             uiController.PlaySplashSound();
         }
 
+        if (splashEffectPrefab != null)
+        {
+            Instantiate(splashEffectPrefab, playerPos.position, Quaternion.identity);
+        }
 
         if (other.CompareTag("Pool") && !isTransitioning)
         {
