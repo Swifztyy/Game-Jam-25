@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -7,24 +8,66 @@ public class LevelManager : MonoBehaviour
     public int currentLevel = -1;
     public List<Transform> levelPositions = new List<Transform>();
     public Transform playerPos;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public DiveUIController uiController;
+
+    private bool isTransitioning = false;
+
+    public AudioSource audioSource;
+    public AudioClip splashSound;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pool"))
+        if (uiController != null)
         {
-            NextLevel();
+            uiController.PlaySplashSound();
+        }
+
+
+        if (other.CompareTag("Pool") && !isTransitioning)
+        {
+            StartCoroutine(HandleLevelTransition());
         }
     }
+
+    private IEnumerator HandleLevelTransition()
+    {
+        isTransitioning = true;
+
+        Time.timeScale = 0.2f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        Rigidbody rb = playerPos.GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.velocity = Vector3.down * 2f;
+
+        bool teleported = false;
+
+        float midRiseY = Screen.height * 0.6f; 
+
+        uiController.PlayRiseUI(midRiseY, () => teleported = true);
+
+        // Wait for teleport callback
+        yield return new WaitUntil(() => teleported);
+
+        // Teleport player
+        currentLevel++;
+        if (currentLevel < levelPositions.Count)
+        {
+            playerPos.position = levelPositions[currentLevel].position;
+        }
+        else
+        {
+            Debug.Log("No more levels.");
+        }
+
+        // Reset time
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+
+        isTransitioning = false;
+    }
+
     void NextLevel()
     {
         currentLevel++;
