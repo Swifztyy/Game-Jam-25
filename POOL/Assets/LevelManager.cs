@@ -18,20 +18,21 @@ public class LevelManager : MonoBehaviour
 
     public GameObject splashEffectPrefab;
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (uiController != null)
-        {
-            uiController.PlaySplashSound();
-        }
-
-        if (splashEffectPrefab != null)
-        {
-            Instantiate(splashEffectPrefab, playerPos.position, Quaternion.identity);
-        }
-
         if (other.CompareTag("Pool") && !isTransitioning)
         {
+            if (uiController != null)
+            {
+                uiController.PlaySplashSound();
+            }
+
+            if (splashEffectPrefab != null)
+            {
+                Instantiate(splashEffectPrefab, playerPos.position, Quaternion.identity);
+            }
+
             StartCoroutine(HandleLevelTransition());
         }
     }
@@ -66,6 +67,10 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("No more levels.");
         }
+
+        RagdollController ragdoll = playerPos.GetComponentInChildren<RagdollController>();
+        if (ragdoll != null)
+            ragdoll.DisableRagdoll();
 
         // Reset time
         Time.timeScale = 1f;
