@@ -71,9 +71,9 @@ public class LevelManager : MonoBehaviour
             Debug.Log("No more levels or player is dead.");
         }
 
-        RagdollController ragdoll = playerPos.GetComponentInChildren<RagdollController>();
-        if (ragdoll != null)
-            ragdoll.DisableRagdoll();
+        //RagdollController ragdoll = playerPos.GetComponentInChildren<RagdollController>();
+        //if (ragdoll != null)
+        //    ragdoll.DisableRagdoll();
 
         // Reset time
         Time.timeScale = 1f;
