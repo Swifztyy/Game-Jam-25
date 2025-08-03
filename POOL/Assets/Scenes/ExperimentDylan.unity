@@ -28339,7 +28339,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5a8c9a0008131034d829450675466847, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 896e27dd2ba8ce942b19694758aefe98, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -32137,7 +32137,7 @@ MonoBehaviour:
   playerHealth: 100
   damageValue: 100
   isPlayerDead: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 103163845}
   hurtSounds:
   - {fileID: 8300000, guid: e27a23a63279854418a88ffc647c2d00, type: 3}
   - {fileID: 8300000, guid: 2b31079008797e444b89347600583689, type: 3}
