@@ -61,7 +61,7 @@ public class HealthManager : MonoBehaviour
         // this is to reset the damaged obstacles hash whenever it is called in a level transition
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("player is dead");
         playerController.enabled = false;

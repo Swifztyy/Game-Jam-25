@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pool
+  - Obstacle
+  - DeathPlatform
   layers:
   - Default
   - TransparentFX

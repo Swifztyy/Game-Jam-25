@@ -16,5 +16,9 @@ public class LimbCollisionHandler : MonoBehaviour
         {
             healthManager?.TakeDamage(collision.collider.gameObject);
         }
+        else if (collision.collider.CompareTag("DeathPlatform"))
+        {
+            healthManager?.Die();
+        }
     }
 }
