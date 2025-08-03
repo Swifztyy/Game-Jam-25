@@ -18,22 +18,20 @@ public class LevelManager : MonoBehaviour
 
     public GameObject splashEffectPrefab;
 
-    [SerializeField] private HealthManager healthManager;
-
     private void OnTriggerEnter(Collider other)
     {
+        if (uiController != null)
+        {
+            uiController.PlaySplashSound();
+        }
+
+        if (splashEffectPrefab != null)
+        {
+            Instantiate(splashEffectPrefab, playerPos.position, Quaternion.identity);
+        }
+
         if (other.CompareTag("Pool") && !isTransitioning)
         {
-            if (uiController != null)
-            {
-                uiController.PlaySplashSound();
-            }
-
-            if (splashEffectPrefab != null)
-            {
-                Instantiate(splashEffectPrefab, playerPos.position, Quaternion.identity);
-            }
-
             StartCoroutine(HandleLevelTransition());
         }
     }
@@ -60,20 +58,14 @@ public class LevelManager : MonoBehaviour
 
         // Teleport player
         currentLevel++;
-        if (currentLevel < levelPositions.Count && healthManager.isPlayerDead == false)
+        if (currentLevel < levelPositions.Count)
         {
             playerPos.position = levelPositions[currentLevel].position;
-            healthManager.ClearDamagedObstacles();
-            healthManager.RestoreHealth();
         }
         else
         {
-            Debug.Log("No more levels or player is dead.");
+            Debug.Log("No more levels.");
         }
-
-        //RagdollController ragdoll = playerPos.GetComponentInChildren<RagdollController>();
-        //if (ragdoll != null)
-        //    ragdoll.DisableRagdoll();
 
         // Reset time
         Time.timeScale = 1f;

@@ -50,7 +50,7 @@ public class DiveUIController : MonoBehaviour
 
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0f;
+            canvasGroup.alpha = 1f;
         }
 
         uiPanel.gameObject.SetActive(true);
@@ -71,21 +71,21 @@ public class DiveUIController : MonoBehaviour
 
     private IEnumerator RiseSequence(float midRiseY, Action onMidRiseComplete)
     {
-        float totalDuration = 4.5f;
-        float midDuration = totalDuration * 0.6f;
+        float totalDuration = 2.5f;
+        float midDuration = totalDuration * 0.4f;  // ~40% duration to mid point
         float endDuration = totalDuration - midDuration;
 
-        yield return AnimatePosition(startPos.y, midRiseY, midDuration, fadeOut: false, fadeIn: true);
+        yield return AnimatePosition(startPos.y, midRiseY, midDuration);
 
         onMidRiseComplete?.Invoke();
 
-        float endY = screenHeight + 400f;
+        float endY = screenHeight + 200f;
         yield return AnimatePosition(midRiseY, endY, endDuration, fadeOut: true);
 
         uiPanel.gameObject.SetActive(false);
     }
 
-    private IEnumerator AnimatePosition(float fromY, float toY, float duration, bool fadeOut = false, bool fadeIn = false)
+    private IEnumerator AnimatePosition(float fromY, float toY, float duration, bool fadeOut = false)
     {
         float elapsed = 0f;
         Vector2 anchoredPos = uiPanel.anchoredPosition;
@@ -97,16 +97,12 @@ public class DiveUIController : MonoBehaviour
             float newY = Mathf.Lerp(fromY, toY, t);
             uiPanel.anchoredPosition = new Vector2(anchoredPos.x, newY);
 
-            if (canvasGroup != null)
-            {
-                if (fadeIn)
-                    canvasGroup.alpha = t; 
-                else if (fadeOut)
-                    canvasGroup.alpha = 1f - t; 
-            }
+            if (fadeOut && canvasGroup != null)
+                canvasGroup.alpha = 1f - t;
 
             yield return null;
         }
+
     }
 
     public void PlaySplashSound()
