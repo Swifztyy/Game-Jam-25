@@ -59,17 +59,22 @@ public class LevelManager : MonoBehaviour
         yield return new WaitUntil(() => teleported);
 
         // Teleport player
-        currentLevel++;
-        if (currentLevel < levelPositions.Count && healthManager.isPlayerDead == false)
+        if (healthManager.isPlayerDead == false)
         {
-            playerPos.position = levelPositions[currentLevel].position;
-            healthManager.ClearDamagedObstacles();
-            healthManager.RestoreHealth();
+            currentLevel++;
+
+            if (currentLevel < levelPositions.Count && healthManager.isPlayerDead == false)
+            {
+                playerPos.position = levelPositions[currentLevel].position;
+                healthManager.ClearDamagedObstacles();
+                healthManager.RestoreHealth();
+            }
+            else
+            {
+                Debug.Log("No more levels or player is dead.");
+            }
         }
-        else
-        {
-            Debug.Log("No more levels or player is dead.");
-        }
+
 
         //RagdollController ragdoll = playerPos.GetComponentInChildren<RagdollController>();
         //if (ragdoll != null)

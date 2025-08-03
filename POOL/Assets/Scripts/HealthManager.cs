@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
@@ -14,8 +16,17 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject youDiedScreen;
+
+
+    [Header("Damage Indicator")]
+    public Image image;
+    public float flashDuration = 1f;
+
+    private bool flashing = false;
+
     public void TakeDamage(GameObject obstacle)
     {
+
         if (!damagedObstacles.Contains(obstacle))
         {
             playerHealth -= damageValue;
@@ -44,5 +55,18 @@ public class HealthManager : MonoBehaviour
     public void RestoreHealth()
     {
         playerHealth = 100;
+    }
+
+    public void StartFlash()
+    {
+        if (!flashing)
+        {
+            
+        }
+    }
+
+    private void SetAlpha(float a)
+    {
+
     }
 }

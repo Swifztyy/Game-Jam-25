@@ -5,9 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class RestartScript : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private HealthManager healthManager;
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private GameObject diedScreen;
     public void RestartGame()
     {
-        SceneManager.LoadScene("Experiment");
         Time.timeScale = 1.0f;
+        if (levelManager.currentLevel < 0)
+        {
+            SceneManager.LoadScene("ExperimentDylan");
+        }
+        else
+        {
+            diedScreen.SetActive(false);
+            healthManager.RestoreHealth();
+            healthManager.isPlayerDead = false;
+            playerController.enabled = true;
+            levelManager.playerPos.position = levelManager.levelPositions[levelManager.currentLevel].position;
+        }
     }
 }
