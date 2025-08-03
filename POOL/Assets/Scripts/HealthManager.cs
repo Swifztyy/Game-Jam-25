@@ -11,6 +11,9 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private int damageValue = 20;
     public bool isPlayerDead = false;
 
+    public AudioSource audioSource;
+    public AudioClip[] hurtSounds;
+
     public HashSet<GameObject> damagedObstacles = new HashSet<GameObject>();
     //list of obstacles that have been hit by the player so you cant take multiple instances of damage from the same obstacle
 
@@ -32,11 +35,17 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(GameObject obstacle)
     {
-
         if (!damagedObstacles.Contains(obstacle))
         {
             playerHealth -= damageValue;
             damagedObstacles.Add(obstacle);
+
+            if (hurtSounds.Length > 0 && audioSource != null)
+            {
+                int index = UnityEngine.Random.Range(0, hurtSounds.Length);
+                audioSource.PlayOneShot(hurtSounds[index]);
+            }
+
             if (flash != null) StopCoroutine(flash);
             flash = StartCoroutine(Flash());
 
