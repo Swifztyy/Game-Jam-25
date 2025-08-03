@@ -37823,22 +37823,13 @@ MonoBehaviour:
   isPlayerDead: 0
   audioSource: {fileID: 103163845}
   hurtSounds:
-  - {fileID: 8300000, guid: e27a23a63279854418a88ffc647c2d00, type: 3}
-  - {fileID: 8300000, guid: 2b31079008797e444b89347600583689, type: 3}
-  - {fileID: 8300000, guid: 9ace2289127373243873fde81a76629e, type: 3}
-  - {fileID: 8300000, guid: 0cec2d22e34aee944ba3ad58ba3e0b29, type: 3}
-  - {fileID: 8300000, guid: bcaa1fbc4b2253a4c84a2250e4cc0069, type: 3}
-  - {fileID: 8300000, guid: 01664e12a64c088468b28bf93e63c32c, type: 3}
-  - {fileID: 8300000, guid: 2232e07644b19dd42b704bbafb33d55d, type: 3}
-  - {fileID: 8300000, guid: 2dd599fcd714b664296368b6fbeb63fd, type: 3}
-  - {fileID: 8300000, guid: 2e0c3f6a02f9e004ebf676902c9cba20, type: 3}
-  - {fileID: 8300000, guid: d4e92575384ea7d4dacd4e01b3d31d4d, type: 3}
-  - {fileID: 8300000, guid: b111c9ec41306a943a082b455396d189, type: 3}
-  - {fileID: 8300000, guid: 2c1b5be9ea7c3bb44b75ebeca9815e9e, type: 3}
-  - {fileID: 8300000, guid: 006c9a1810d976e4da2193ea9e6a7d61, type: 3}
-  - {fileID: 8300000, guid: 38298433d04e1904aab3f5e102af1673, type: 3}
-  - {fileID: 8300000, guid: 329ae9335771509409d34206c15a76b3, type: 3}
-  - {fileID: 8300000, guid: 2a749a2d0d47f78468f309ae5254cd97, type: 3}
+  - {fileID: 8300000, guid: 94c1c7b6040fce540a0e28720a09f0f6, type: 3}
+  - {fileID: 8300000, guid: dfdfb199a33e0ad49bef105d4769ca6d, type: 3}
+  - {fileID: 8300000, guid: 56d5f5de89268924383e742a97067553, type: 3}
+  - {fileID: 8300000, guid: 2bb258ecca6928b439703cf7ab3ea47f, type: 3}
+  - {fileID: 8300000, guid: 394798a9eab4c0b47803d834f4770483, type: 3}
+  - {fileID: 8300000, guid: 0a8e15b065c86f1408552b10ccbf0508, type: 3}
+  - {fileID: 8300000, guid: ca2caa96d30b820499b4f15c5b0823d2, type: 3}
   playerController: {fileID: 1245855735}
   youDiedScreen: {fileID: 95470511}
   damageImage: {fileID: 1374462839}
