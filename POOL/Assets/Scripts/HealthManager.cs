@@ -19,10 +19,16 @@ public class HealthManager : MonoBehaviour
 
 
     [Header("Damage Indicator")]
-    public Image image;
-    public float flashDuration = 1f;
+    public Image damageImage;
+    public float flashDuration = 0.2f;
+    public float maxAlpha = 0.3f;
 
-    private bool flashing = false;
+    Coroutine flash;
+
+    private void Start()
+    {
+        SetAlpha(0f);
+    }
 
     public void TakeDamage(GameObject obstacle)
     {
@@ -31,7 +37,9 @@ public class HealthManager : MonoBehaviour
         {
             playerHealth -= damageValue;
             damagedObstacles.Add(obstacle);
-            
+            if (flash != null) StopCoroutine(flash);
+            flash = StartCoroutine(Flash());
+
             if (playerHealth <= 0)
             {
                 Die();
@@ -56,17 +64,23 @@ public class HealthManager : MonoBehaviour
     {
         playerHealth = 100;
     }
-
-    public void StartFlash()
+    IEnumerator Flash()
     {
-        if (!flashing)
+        float t = 0f;
+        while (t < flashDuration)
         {
-            
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(maxAlpha, 0, t / flashDuration);
+            var c = damageImage.color;
+            c.a = a;
+            damageImage.color = c;
+            yield return null;
         }
     }
-
-    private void SetAlpha(float a)
+    void SetAlpha(float a)
     {
-
+        var c = damageImage.color;
+        c.a = a;
+        damageImage.color = c;
     }
 }
