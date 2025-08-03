@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -69,9 +70,13 @@ public class LevelManager : MonoBehaviour
                 healthManager.ClearDamagedObstacles();
                 healthManager.RestoreHealth();
             }
+            else if (healthManager.isPlayerDead == true)
+            {
+                Debug.Log("player is dead");
+            }
             else
             {
-                Debug.Log("No more levels or player is dead.");
+                SceneManager.LoadScene("WinMenu");
             }
         }
 
